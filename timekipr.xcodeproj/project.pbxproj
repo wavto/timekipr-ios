@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		55470D511A618DA400646D00 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55470D501A618DA400646D00 /* Project.swift */; };
+		55470D531A618DA500646D00 /* TimeEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55470D521A618DA500646D00 /* TimeEntry.swift */; };
+		55470D551A62970900646D00 /* AddProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55470D541A62970900646D00 /* AddProjectViewController.swift */; };
+		55470D571A62979F00646D00 /* WorkSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55470D561A62979F00646D00 /* WorkSummaryViewController.swift */; };
 		55559FC61A2E59AA00B0452C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55559FC51A2E59AA00B0452C /* AppDelegate.swift */; };
 		55559FC91A2E59AA00B0452C /* timekipr.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 55559FC71A2E59AA00B0452C /* timekipr.xcdatamodeld */; };
 		55559FCB1A2E59AA00B0452C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55559FCA1A2E59AA00B0452C /* ViewController.swift */; };
@@ -14,6 +18,7 @@
 		55559FD01A2E59AA00B0452C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55559FCF1A2E59AA00B0452C /* Images.xcassets */; };
 		55559FD31A2E59AA00B0452C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55559FD11A2E59AA00B0452C /* LaunchScreen.xib */; };
 		55559FDF1A2E59AA00B0452C /* timekiprTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55559FDE1A2E59AA00B0452C /* timekiprTests.swift */; };
+		55559FE91A2E5C2200B0452C /* MainViewContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55559FE81A2E5C2200B0452C /* MainViewContoller.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +32,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		55470D501A618DA400646D00 /* Project.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
+		55470D521A618DA500646D00 /* TimeEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeEntry.swift; sourceTree = "<group>"; };
+		55470D541A62970900646D00 /* AddProjectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddProjectViewController.swift; sourceTree = "<group>"; };
+		55470D561A62979F00646D00 /* WorkSummaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkSummaryViewController.swift; sourceTree = "<group>"; };
 		55559FC01A2E59AA00B0452C /* timekipr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = timekipr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55559FC41A2E59AA00B0452C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55559FC51A2E59AA00B0452C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -38,6 +47,7 @@
 		55559FD81A2E59AA00B0452C /* timekiprTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = timekiprTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		55559FDD1A2E59AA00B0452C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55559FDE1A2E59AA00B0452C /* timekiprTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = timekiprTests.swift; sourceTree = "<group>"; };
+		55559FE81A2E5C2200B0452C /* MainViewContoller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewContoller.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +68,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		55470D4D1A61647800646D00 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				55470D521A618DA500646D00 /* TimeEntry.swift */,
+				55470D501A618DA400646D00 /* Project.swift */,
+			);
+			name = Entity;
+			sourceTree = "<group>";
+		};
 		55559FB71A2E59AA00B0452C = {
 			isa = PBXGroup;
 			children = (
@@ -81,11 +100,15 @@
 			children = (
 				55559FC51A2E59AA00B0452C /* AppDelegate.swift */,
 				55559FCA1A2E59AA00B0452C /* ViewController.swift */,
+				55559FE81A2E5C2200B0452C /* MainViewContoller.swift */,
+				55470D541A62970900646D00 /* AddProjectViewController.swift */,
+				55470D561A62979F00646D00 /* WorkSummaryViewController.swift */,
 				55559FCC1A2E59AA00B0452C /* Main.storyboard */,
 				55559FCF1A2E59AA00B0452C /* Images.xcassets */,
 				55559FD11A2E59AA00B0452C /* LaunchScreen.xib */,
 				55559FC71A2E59AA00B0452C /* timekipr.xcdatamodeld */,
 				55559FC31A2E59AA00B0452C /* Supporting Files */,
+				55470D4D1A61647800646D00 /* Entity */,
 			);
 			path = timekipr;
 			sourceTree = "<group>";
@@ -215,9 +238,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55470D551A62970900646D00 /* AddProjectViewController.swift in Sources */,
+				55559FE91A2E5C2200B0452C /* MainViewContoller.swift in Sources */,
+				55470D571A62979F00646D00 /* WorkSummaryViewController.swift in Sources */,
 				55559FCB1A2E59AA00B0452C /* ViewController.swift in Sources */,
 				55559FC91A2E59AA00B0452C /* timekipr.xcdatamodeld in Sources */,
+				55470D511A618DA400646D00 /* Project.swift in Sources */,
 				55559FC61A2E59AA00B0452C /* AppDelegate.swift in Sources */,
+				55470D531A618DA500646D00 /* TimeEntry.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,6 +437,7 @@
 				55559FE41A2E59AA00B0452C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		55559FE51A2E59AA00B0452C /* Build configuration list for PBXNativeTarget "timekiprTests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +446,7 @@
 				55559FE71A2E59AA00B0452C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
