@@ -30,7 +30,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="projectCell" id="1xD-sU-SgI">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="projectCell" id="1xD-sU-SgI">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1xD-sU-SgI" id="ZOS-hP-SEO">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -50,14 +50,17 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="tMu-Ou-eBM">
                             <connections>
-                                <segue destination="a39-Wr-f1f" kind="presentation" id="i5X-Ga-wIb"/>
+                                <segue destination="a39-Wr-f1f" kind="show" id="i5X-Ga-wIb"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="a39-Wr-f1f" kind="show" identifier="editProject" id="e0L-WE-847"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Xx-ym-VFq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-124" y="261"/>
+            <point key="canvasLocation" x="-124" y="256"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="P0K-kk-PNw">
@@ -88,24 +91,34 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="enter a project name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gG5-60-WRf">
-                                <rect key="frame" x="92" y="111" width="435" height="30"/>
+                                <rect key="frame" x="149" y="119" width="435" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="enter a project color" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="n7l-qE-j3u">
-                                <rect key="frame" x="92" y="185" width="435" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Project name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fhj-7i-V6p">
+                                <rect key="frame" x="16" y="123" width="102" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vto-2F-3zT">
+                                <rect key="frame" x="0.0" y="205" width="600" height="162"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="jc2-H8-2Uh" id="LQX-Qy-Tvv"/>
+                                    <outlet property="delegate" destination="jc2-H8-2Uh" id="eD0-fA-gQb"/>
+                                </connections>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="gG5-60-WRf" firstAttribute="leading" secondItem="n7l-qE-j3u" secondAttribute="leading" id="hVh-rr-blL"/>
-                            <constraint firstItem="gG5-60-WRf" firstAttribute="leading" secondItem="mON-F0-Uwz" secondAttribute="leadingMargin" constant="76" id="hx9-aP-ykV"/>
-                            <constraint firstItem="gG5-60-WRf" firstAttribute="top" secondItem="7La-XB-9Vx" secondAttribute="bottom" constant="47" id="l9K-GB-VhI"/>
-                            <constraint firstItem="n7l-qE-j3u" firstAttribute="top" secondItem="gG5-60-WRf" secondAttribute="bottom" constant="44" id="tzj-az-Lui"/>
-                            <constraint firstItem="gG5-60-WRf" firstAttribute="trailing" secondItem="n7l-qE-j3u" secondAttribute="trailing" id="uZK-Db-xta"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="gG5-60-WRf" secondAttribute="trailing" constant="57" id="zkD-LZ-enZ"/>
+                            <constraint firstItem="gG5-60-WRf" firstAttribute="trailing" secondItem="mON-F0-Uwz" secondAttribute="trailingMargin" id="7vs-LR-50U"/>
+                            <constraint firstItem="fhj-7i-V6p" firstAttribute="leading" secondItem="mON-F0-Uwz" secondAttribute="leadingMargin" id="8Ut-se-iQH"/>
+                            <constraint firstItem="gG5-60-WRf" firstAttribute="leading" secondItem="fhj-7i-V6p" secondAttribute="trailing" constant="31" id="kW1-mx-c6e"/>
+                            <constraint firstItem="Vto-2F-3zT" firstAttribute="top" secondItem="gG5-60-WRf" secondAttribute="bottom" constant="56" id="ovq-ri-g1P"/>
+                            <constraint firstItem="gG5-60-WRf" firstAttribute="top" secondItem="7La-XB-9Vx" secondAttribute="bottom" constant="55" id="pwS-Hr-eaw"/>
+                            <constraint firstItem="fhj-7i-V6p" firstAttribute="top" secondItem="7La-XB-9Vx" secondAttribute="bottom" constant="59" id="rFG-l0-6St"/>
+                            <constraint firstAttribute="trailing" secondItem="Vto-2F-3zT" secondAttribute="trailing" id="tr2-H6-9ez"/>
+                            <constraint firstItem="Vto-2F-3zT" firstAttribute="leading" secondItem="mON-F0-Uwz" secondAttribute="leading" id="vCR-CK-BQD"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="add new project" id="gen-lS-7ND">
@@ -121,7 +134,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="projectColorField" destination="n7l-qE-j3u" id="Vju-Q9-siz"/>
+                        <outlet property="projectColorPicker" destination="Vto-2F-3zT" id="fag-JM-YW1"/>
                         <outlet property="projectNameField" destination="gG5-60-WRf" id="4oQ-Rr-oky"/>
                         <outlet property="saveButton" destination="2NU-E8-NhE" id="bh4-Rc-gzQ"/>
                     </connections>
@@ -156,7 +169,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="R2X-Hd-PMO">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="summaryCell" id="R2X-Hd-PMO">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="R2X-Hd-PMO" id="Mr0-Ha-XDn">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -169,12 +182,20 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="work summary" id="XhM-dK-sJV">
-                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="Yac-3s-lUd"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="Yac-3s-lUd">
+                            <connections>
+                                <segue destination="TDW-uI-J2V" kind="unwind" unwindAction="unwindToSegueWithoutAction:" id="WNt-RQ-rdn"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t1P-YW-qZo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="TDW-uI-J2V" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1617" y="-244"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="i5X-Ga-wIb"/>
+    </inferredMetricsTieBreakers>
 </document>

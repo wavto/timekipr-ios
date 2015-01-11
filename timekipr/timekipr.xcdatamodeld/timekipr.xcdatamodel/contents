@@ -10,7 +10,7 @@
         <relationship name="timeEntryProject" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Project" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Project" positionX="-54" positionY="-9" width="128" height="73"/>
+        <element name="Project" positionX="-54" positionY="-9" width="128" height="75"/>
         <element name="TimeEntry" positionX="-441" positionY="-63" width="128" height="88"/>
     </elements>
 </model>

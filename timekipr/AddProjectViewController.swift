@@ -10,30 +10,58 @@ import Foundation
 import UIKit
 
 
-class AddProjectViewController: UIViewController {
+class AddProjectViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
     @IBOutlet weak var projectNameField: UITextField!
-    @IBOutlet weak var projectColorField: UITextField!
+    @IBOutlet weak var projectColorPicker: UIPickerView!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     var projectName: NSString?
-    var projectColor: NSString?
+    var projectColorName: NSString?
+    var colors: [(name: NSString, color: UIColor)] = []
+    var project: Project?
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (sender as? UIBarButtonItem != self.saveButton) {
             return
         }
         self.projectName = self.projectNameField.text
-        self.projectColor = self.projectNameField.text
+        self.projectColorName = self.colors[self.projectColorPicker.selectedRowInComponent(0)].name
+    }
+    
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+            return self.colors.count
+    }
+    
+    func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView!) -> UIView {
+        var pickerLabel = view as UILabel!
+        if (view == nil) {
+            pickerLabel = UILabel()
+            pickerLabel.backgroundColor = self.colors[row].color
+        }
+        pickerLabel.attributedText = NSAttributedString(string: self.colors[row].name)
+        pickerLabel.textAlignment = NSTextAlignment.Center
+        return pickerLabel
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.initColors()
+        // TODO set selected project for editing
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func initColors() {
+        self.colors += Helper.getColorTuples()
     }
     
 }

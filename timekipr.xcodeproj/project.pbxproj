@@ -11,6 +11,7 @@
 		55470D531A618DA500646D00 /* TimeEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55470D521A618DA500646D00 /* TimeEntry.swift */; };
 		55470D551A62970900646D00 /* AddProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55470D541A62970900646D00 /* AddProjectViewController.swift */; };
 		55470D571A62979F00646D00 /* WorkSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55470D561A62979F00646D00 /* WorkSummaryViewController.swift */; };
+		55470D591A62CACD00646D00 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55470D581A62CACD00646D00 /* Helper.swift */; };
 		55559FC61A2E59AA00B0452C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55559FC51A2E59AA00B0452C /* AppDelegate.swift */; };
 		55559FC91A2E59AA00B0452C /* timekipr.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 55559FC71A2E59AA00B0452C /* timekipr.xcdatamodeld */; };
 		55559FCB1A2E59AA00B0452C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55559FCA1A2E59AA00B0452C /* ViewController.swift */; };
@@ -36,6 +37,7 @@
 		55470D521A618DA500646D00 /* TimeEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeEntry.swift; sourceTree = "<group>"; };
 		55470D541A62970900646D00 /* AddProjectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddProjectViewController.swift; sourceTree = "<group>"; };
 		55470D561A62979F00646D00 /* WorkSummaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkSummaryViewController.swift; sourceTree = "<group>"; };
+		55470D581A62CACD00646D00 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		55559FC01A2E59AA00B0452C /* timekipr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = timekipr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55559FC41A2E59AA00B0452C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55559FC51A2E59AA00B0452C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				55559FCF1A2E59AA00B0452C /* Images.xcassets */,
 				55559FD11A2E59AA00B0452C /* LaunchScreen.xib */,
 				55559FC71A2E59AA00B0452C /* timekipr.xcdatamodeld */,
+				55470D581A62CACD00646D00 /* Helper.swift */,
 				55559FC31A2E59AA00B0452C /* Supporting Files */,
 				55470D4D1A61647800646D00 /* Entity */,
 			);
@@ -243,6 +246,7 @@
 				55470D571A62979F00646D00 /* WorkSummaryViewController.swift in Sources */,
 				55559FCB1A2E59AA00B0452C /* ViewController.swift in Sources */,
 				55559FC91A2E59AA00B0452C /* timekipr.xcdatamodeld in Sources */,
+				55470D591A62CACD00646D00 /* Helper.swift in Sources */,
 				55470D511A618DA400646D00 /* Project.swift in Sources */,
 				55559FC61A2E59AA00B0452C /* AppDelegate.swift in Sources */,
 				55470D531A618DA500646D00 /* TimeEntry.swift in Sources */,
