@@ -28,6 +28,14 @@ class AddProjectViewController: UIViewController, UIPickerViewDataSource, UIPick
         self.projectColorName = self.colors[self.projectColorPicker.selectedRowInComponent(0)].name
     }
     
+    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+        self.projectNameField.endEditing(true)
+    }
+    
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.projectNameField.endEditing(true)
+    }
+    
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -50,8 +58,12 @@ class AddProjectViewController: UIViewController, UIPickerViewDataSource, UIPick
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initColors()
-        // TODO set selected project for editing
-        
+        if let project = self.project {
+            self.title = "edit project"
+            self.projectNameField.text = project.name
+            self.projectColorPicker.selectRow(Helper.getIndexFromName(project.color)!, inComponent: 0, animated: false)
+        }
+        self.projectNameField.becomeFirstResponder()
         // Do any additional setup after loading the view, typically from a nib.
     }
     

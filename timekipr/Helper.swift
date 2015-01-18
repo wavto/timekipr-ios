@@ -30,4 +30,22 @@ class Helper {
             ("Navy", UIColor(red: CGFloat(0/255.0), green: CGFloat(0/255.0), blue: CGFloat(128/255.0), alpha: 1.0))
         ]
     }
+    
+    class func getColorFromName(name: NSString) -> UIColor? {
+        for (index, colorItem) in enumerate(self.getColorTuples()) {
+            if (colorItem.name == name) {
+                return colorItem.color
+            }
+        }
+        return nil
+    }
+    
+    class func getIndexFromName(name: NSString) -> Int? {
+        for (index, colorItem) in enumerate(self.getColorTuples()) {
+            if (colorItem.name == name) {
+                return index
+            }
+        }
+        return nil
+    }
 }

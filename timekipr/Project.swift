@@ -13,6 +13,7 @@ class Project: NSManagedObject {
 
     @NSManaged var color: String
     @NSManaged var name: String
+    @NSManaged var projectTimeEntries: NSSet
     
     class func create(name: NSString, projectColor color: NSString, insertIntoManagedObjectContext context: NSManagedObjectContext) -> Project {
         let project = NSEntityDescription.insertNewObjectForEntityForName("Project", inManagedObjectContext: context) as Project
