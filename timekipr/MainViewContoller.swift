@@ -25,7 +25,6 @@ class MainViewController: UITableViewController, UITableViewDataSource {
         if let project = source.project {
             project.name = source.projectName!
             project.color = source.projectColorName!
-            self.managedObjectContext!.save(nil)
         } else {
             let project = Project.create(source.projectName!, projectColor: source.projectColorName!, insertIntoManagedObjectContext: self.managedObjectContext!)
             self.projects.append(project)

@@ -20,29 +20,49 @@ class TimeEntryViewController: UIViewController, UIPickerViewDataSource, UIPicke
     @IBOutlet weak var stopButton: UIButton!
     @IBOutlet weak var timeDatePicker: UIDatePicker!
     @IBOutlet weak var projectPicker: UIPickerView!
+    @IBOutlet weak var summaryBarButton: UIBarButtonItem!
     
     var timeEntry: TimeEntry?
-    var editingStartTime: Bool = true
+    var editingStartTime: Bool?
     var projectList = [Project]()
     lazy var managedObjectContext = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext
     
     
     @IBAction func showTimeDatePicker(sender: UITapGestureRecognizer) {
+        let isStartTime = sender.view == self.startTimeLabel
+        let isHidden = self.timeDatePicker.hidden || self.editingStartTime == !isStartTime
         self.hideEditElement(sender)
-        self.editingStartTime = sender.view == self.startTimeLabel
-        self.timeDatePicker.hidden = false
+        if isHidden {
+            self.editingStartTime = isStartTime
+            if let time = isStartTime ? self.timeEntry?.start : self.timeEntry?.end {
+                self.timeDatePicker.setDate(time, animated: false)
+            }
+            if isStartTime {
+                self.timeDatePicker.maximumDate = (self.timeEntry?.end != nil) ? self.timeEntry!.end : NSDate()
+            } else {
+                self.timeDatePicker.minimumDate = self.timeEntry!.start
+            }
+            self.timeDatePicker.hidden = false
+        }
+
     }
     
     @IBAction func showProjectPicker(sender: UITapGestureRecognizer) {
+        let isHidden = self.projectPicker.hidden
         self.hideEditElement(sender)
-        if let timeEntry = self.timeEntry {
-            self.projectPicker.selectRow(find(self.projectList, timeEntry.timeEntryProject)!, inComponent: 0, animated: false)
+        if isHidden {
+            if let timeEntry = self.timeEntry {
+                self.projectPicker.selectRow(find(self.projectList, timeEntry.timeEntryProject)!, inComponent: 0, animated: false)
+            }
+            self.projectPicker.hidden = false
         }
-        self.projectPicker.hidden = false
     }
     
     @IBAction func hideEditElement(sender: UITapGestureRecognizer) {
         self.timeDatePicker.hidden = true
+        self.timeDatePicker.minimumDate = nil
+        self.timeDatePicker.maximumDate = nil
+        self.editingStartTime = nil
         self.projectPicker.hidden = true
     }
     
@@ -68,7 +88,7 @@ class TimeEntryViewController: UIViewController, UIPickerViewDataSource, UIPicke
     
     @IBAction func updateTimer(sender: AnyObject) {
         if let startTime = self.timeEntry?.start {
-            let timeIntervall = -startTime.timeIntervalSinceNow
+            let timeIntervall = self.timeEntry?.end != nil ? -startTime.timeIntervalSinceDate(self.timeEntry!.end) : -startTime.timeIntervalSinceNow
             let hours = Int(timeIntervall / 3600)
             let minutes = Int((timeIntervall % 3600) / 60)
             let seconds = Int((timeIntervall % 3600) % 60)
@@ -78,6 +98,28 @@ class TimeEntryViewController: UIViewController, UIPickerViewDataSource, UIPicke
                 formatter.stringFromNumber(seconds)!
             self.timerLabel.text = time
         }
+    }
+    
+    @IBAction func timeDateChanged(datePicker: UIDatePicker) {
+        if (self.editingStartTime!) {
+            timeEntry?.start = datePicker.date
+            self.setStartTime()
+        } else {
+            timeEntry?.end = datePicker.date
+            self.setEndTime()
+        }
+        self.updateTimer(datePicker)
+    }
+
+    @IBAction func stopButtonClicked(button: UIButton) {
+        //self.summaryBarButton
+        self.navigationController?.navigationItem.setLeftBarButtonItem(UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: self, action: Selector("segueBackToMain:")), animated: false)
+        self.timeEntry!.end = NSDate()
+        self.setEndTime()
+    }
+    
+    @IBAction func segueBackToMain(sender: AnyObject?) {
+        self.performSegueWithIdentifier("backToMain", sender: sender)
     }
     
     private func setCurrentProject() {
@@ -94,7 +136,7 @@ class TimeEntryViewController: UIViewController, UIPickerViewDataSource, UIPicke
             self.startTimeLabel.text = dateFormatter.stringFromDate(timeEntry.start)
         }
     }
-    
+
     private func setEndTime() {
         if let endTime = self.timeEntry?.end {
             let dateFormatter = NSDateFormatter()
@@ -102,6 +144,7 @@ class TimeEntryViewController: UIViewController, UIPickerViewDataSource, UIPicke
             self.endTimeLabel.text = dateFormatter.stringFromDate(endTime)
             self.endTimeNameLabel.hidden = false
             self.endTimeLabel.hidden = false
+            self.stopButton.hidden = true
         } else {
             self.endTimeNameLabel.hidden = true
             self.endTimeLabel.hidden = true
@@ -121,11 +164,11 @@ class TimeEntryViewController: UIViewController, UIPickerViewDataSource, UIPicke
         viewElement.addGestureRecognizer(UITapGestureRecognizer(target: self, action: Selector(selector)))
     }
     
-    
-    
-    
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        //TODO update project
+        if let entry = self.timeEntry {
+            entry.timeEntryProject = self.projectList[row]
+        }
+        self.setCurrentProject()
     }
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {

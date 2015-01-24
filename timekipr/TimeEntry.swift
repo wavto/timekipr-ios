@@ -19,7 +19,6 @@ class TimeEntry: NSManagedObject {
         let timeEntry = NSEntityDescription.insertNewObjectForEntityForName("TimeEntry", inManagedObjectContext: context) as TimeEntry
         timeEntry.start = start
         timeEntry.timeEntryProject = project
-        context.save(nil)
         return timeEntry
     }
 

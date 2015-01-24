@@ -21,7 +21,7 @@ class AddProjectViewController: UIViewController, UIPickerViewDataSource, UIPick
     var project: Project?
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if (sender as? UIBarButtonItem != self.saveButton) {
+        if (self.saveButton != sender as? UIBarButtonItem) {
             return
         }
         self.projectName = self.projectNameField.text

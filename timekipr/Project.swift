@@ -19,7 +19,6 @@ class Project: NSManagedObject {
         let project = NSEntityDescription.insertNewObjectForEntityForName("Project", inManagedObjectContext: context) as Project
         project.name = name
         project.color = color
-        context.save(nil)
         return project
     }
 

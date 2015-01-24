@@ -124,6 +124,9 @@
                                         </fragment>
                                     </attributedString>
                                 </state>
+                                <connections>
+                                    <action selector="stopButtonClicked:" destination="S38-oa-N5W" eventType="touchDown" id="rWa-54-zuM"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="project name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jiA-jF-tsc">
                                 <rect key="frame" x="16" y="171" width="568" height="30"/>
@@ -136,6 +139,9 @@
                                 <date key="date" timeIntervalSinceReferenceDate="443275208.008699">
                                     <!--2015-01-18 12:00:08 +0000-->
                                 </date>
+                                <connections>
+                                    <action selector="timeDateChanged:" destination="S38-oa-N5W" eventType="valueChanged" id="PSR-5K-hdW"/>
+                                </connections>
                             </datePicker>
                             <pickerView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VaX-EV-N7I">
                                 <rect key="frame" x="0.0" y="348" width="600" height="162"/>
@@ -197,11 +203,14 @@
                         <outlet property="projectPicker" destination="VaX-EV-N7I" id="aL1-XN-Szd"/>
                         <outlet property="startTimeLabel" destination="GxD-dN-4ve" id="Fpf-v5-q3R"/>
                         <outlet property="stopButton" destination="Tbp-aC-Ofz" id="stQ-wJ-YUa"/>
+                        <outlet property="summaryBarButton" destination="Ptl-I7-9wc" id="gqy-Ia-Mcx"/>
                         <outlet property="timeDatePicker" destination="hKV-gd-mrv" id="r5V-6C-eRZ"/>
                         <outlet property="timerLabel" destination="wrn-dx-JHU" id="SaD-gJ-qUU"/>
+                        <segue destination="lgg-bU-QVD" kind="unwind" identifier="backToMain" unwindAction="unwindToSegueWithoutAction:" id="F59-fq-HBJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iG7-Wz-2Ej" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="lgg-bU-QVD" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1617" y="-196"/>
         </scene>
@@ -323,21 +332,23 @@
         <scene sceneID="jYr-6G-v8h">
             <objects>
                 <tableViewController id="uWH-6J-Aop" customClass="WorkSummaryViewController" customModule="timekipr" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="pPq-UI-T53">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="jMk-JC-Rak">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="summaryCell" id="R2X-Hd-PMO">
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="R2X-Hd-PMO" id="Mr0-Ha-XDn">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="summaryCell" id="umQ-yH-J5E">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="umQ-yH-J5E" id="7NU-aE-JSi">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="uWH-6J-Aop" id="kuW-U2-a37"/>
-                            <outlet property="delegate" destination="uWH-6J-Aop" id="3aJ-87-31Y"/>
+                            <outlet property="dataSource" destination="uWH-6J-Aop" id="bcs-sQ-rDx"/>
+                            <outlet property="delegate" destination="uWH-6J-Aop" id="KoU-qw-Ow0"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="work summary" id="XhM-dK-sJV">
@@ -355,7 +366,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="e0L-WE-847"/>
         <segue reference="iFq-wq-mi6"/>
-        <segue reference="i5X-Ga-wIb"/>
     </inferredMetricsTieBreakers>
 </document>
