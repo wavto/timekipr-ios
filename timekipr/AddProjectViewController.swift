@@ -61,15 +61,15 @@ class AddProjectViewController: UIViewController, UIPickerViewDataSource, UIPick
         if let project = self.project {
             self.title = "edit project"
             self.projectNameField.text = project.name
-            self.projectColorPicker.selectRow(Helper.getIndexFromName(project.color)!, inComponent: 0, animated: false)
+            if var color = Helper.getIndexFromName(project.color) {
+                self.projectColorPicker.selectRow(color, inComponent: 0, animated: false)
+            }
         }
         self.projectNameField.becomeFirstResponder()
-        // Do any additional setup after loading the view, typically from a nib.
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func initColors() {

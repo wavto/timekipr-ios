@@ -21,7 +21,7 @@
             </objects>
             <point key="canvasLocation" x="-991" y="261"/>
         </scene>
-        <!--timekipr-->
+        <!--timekipr - my projects-->
         <scene sceneID="CN3-k6-kc1">
             <objects>
                 <tableViewController id="0ts-p6-dce" customClass="MainViewController" customModule="timekipr" customModuleProvider="target" sceneMemberID="viewController">
@@ -42,7 +42,7 @@
                             <outlet property="delegate" destination="0ts-p6-dce" id="PVb-ae-nTn"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="timekipr" id="ir8-eM-RlX">
+                    <navigationItem key="navigationItem" title="timekipr - my projects" id="ir8-eM-RlX">
                         <barButtonItem key="leftBarButtonItem" systemItem="bookmarks" id="uWH-pH-U7n">
                             <connections>
                                 <segue destination="AhI-zo-BFt" kind="presentation" id="l8O-wu-9Bf"/>
@@ -128,7 +128,7 @@
                                     <action selector="stopButtonClicked:" destination="S38-oa-N5W" eventType="touchDown" id="rWa-54-zuM"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="project name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jiA-jF-tsc">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="no project" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jiA-jF-tsc">
                                 <rect key="frame" x="16" y="171" width="568" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -194,6 +194,9 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="trash" id="VUU-EI-oQf">
                             <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <segue destination="lgg-bU-QVD" kind="unwind" unwindAction="unwindToSegueDeleteTimeEntry:" id="E5k-5K-a7v"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -270,7 +273,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vto-2F-3zT">
-                                <rect key="frame" x="0.0" y="209" width="600" height="162"/>
+                                <rect key="frame" x="0.0" y="157" width="600" height="162"/>
                                 <connections>
                                     <outlet property="dataSource" destination="jc2-H8-2Uh" id="LQX-Qy-Tvv"/>
                                     <outlet property="delegate" destination="jc2-H8-2Uh" id="eD0-fA-gQb"/>
@@ -282,7 +285,7 @@
                             <constraint firstItem="gG5-60-WRf" firstAttribute="trailing" secondItem="mON-F0-Uwz" secondAttribute="trailingMargin" id="7vs-LR-50U"/>
                             <constraint firstItem="fhj-7i-V6p" firstAttribute="leading" secondItem="mON-F0-Uwz" secondAttribute="leadingMargin" id="8Ut-se-iQH"/>
                             <constraint firstItem="gG5-60-WRf" firstAttribute="leading" secondItem="fhj-7i-V6p" secondAttribute="trailing" constant="31" id="kW1-mx-c6e"/>
-                            <constraint firstItem="Vto-2F-3zT" firstAttribute="top" secondItem="gG5-60-WRf" secondAttribute="bottom" constant="60" id="ovq-ri-g1P"/>
+                            <constraint firstItem="Vto-2F-3zT" firstAttribute="top" secondItem="gG5-60-WRf" secondAttribute="bottom" constant="8" id="ovq-ri-g1P"/>
                             <constraint firstItem="gG5-60-WRf" firstAttribute="top" secondItem="7La-XB-9Vx" secondAttribute="bottom" constant="55" id="pwS-Hr-eaw"/>
                             <constraint firstItem="fhj-7i-V6p" firstAttribute="top" secondItem="7La-XB-9Vx" secondAttribute="bottom" constant="59" id="rFG-l0-6St"/>
                             <constraint firstAttribute="trailing" secondItem="Vto-2F-3zT" secondAttribute="trailing" id="tr2-H6-9ez"/>
@@ -337,19 +340,29 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="summaryCell" id="umQ-yH-J5E">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="summaryCell" textLabel="k3v-cQ-QAE" detailTextLabel="gRY-p6-SaW" style="IBUITableViewCellStyleValue1" id="umQ-yH-J5E">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="umQ-yH-J5E" id="7NU-aE-JSi">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="k3v-cQ-QAE">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gRY-p6-SaW">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="uWH-6J-Aop" id="bcs-sQ-rDx"/>
-                            <outlet property="delegate" destination="uWH-6J-Aop" id="KoU-qw-Ow0"/>
-                        </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="work summary" id="XhM-dK-sJV">
                         <barButtonItem key="leftBarButtonItem" systemItem="done" id="Yac-3s-lUd">
@@ -357,16 +370,26 @@
                                 <segue destination="TDW-uI-J2V" kind="unwind" unwindAction="unwindToSegueWithoutAction:" id="WNt-RQ-rdn"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="monthly" id="Obo-gf-hu7">
+                            <connections>
+                                <action selector="toggleSection" destination="uWH-6J-Aop" id="snB-xg-5ia"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="toggleSectionButton" destination="Obo-gf-hu7" id="heR-Rn-9MO"/>
+                        <segue destination="DTL-QW-XOH" kind="show" identifier="showTimeEntry" id="SQf-oo-uOw"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t1P-YW-qZo" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="TDW-uI-J2V" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="705" y="1572"/>
+            <point key="canvasLocation" x="705" y="1564"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="e0L-WE-847"/>
-        <segue reference="iFq-wq-mi6"/>
+        <segue reference="l8O-wu-9Bf"/>
+        <segue reference="SQf-oo-uOw"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -83,20 +83,13 @@ class TimeEntryViewController: UIViewController, UIPickerViewDataSource, UIPicke
     }
     
     private func initTimer() {
+        updateTimer(self)
         NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("updateTimer:"), userInfo: nil, repeats: true)
     }
     
     @IBAction func updateTimer(sender: AnyObject) {
-        if let startTime = self.timeEntry?.start {
-            let timeIntervall = self.timeEntry?.end != nil ? -startTime.timeIntervalSinceDate(self.timeEntry!.end) : -startTime.timeIntervalSinceNow
-            let hours = Int(timeIntervall / 3600)
-            let minutes = Int((timeIntervall % 3600) / 60)
-            let seconds = Int((timeIntervall % 3600) % 60)
-            let formatter = NSNumberFormatter()
-            formatter.minimumIntegerDigits = 2
-            let time = formatter.stringFromNumber(hours)! + ":" + formatter.stringFromNumber(minutes)! + ":" +
-                formatter.stringFromNumber(seconds)!
-            self.timerLabel.text = time
+        if let timeIntervall = self.timeEntry?.getTotalTime(showTotalForCurrentTime: true) {
+            self.timerLabel.text = Helper.getFormattedTimeTotal(timeIntervall, showSeconds: true)
         }
     }
     
@@ -112,7 +105,6 @@ class TimeEntryViewController: UIViewController, UIPickerViewDataSource, UIPicke
     }
 
     @IBAction func stopButtonClicked(button: UIButton) {
-        //self.summaryBarButton
         self.navigationController?.navigationItem.setLeftBarButtonItem(UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: self, action: Selector("segueBackToMain:")), animated: false)
         self.timeEntry!.end = NSDate()
         self.setEndTime()
@@ -123,9 +115,9 @@ class TimeEntryViewController: UIViewController, UIPickerViewDataSource, UIPicke
     }
     
     private func setCurrentProject() {
-        self.projectLabel.text = self.timeEntry?.timeEntryProject.name
-        if let colorName = self.timeEntry?.timeEntryProject.color {
-            self.projectLabel.backgroundColor = Helper.getColorFromName(colorName)
+        if let project = self.timeEntry?.timeEntryProject {
+            self.projectLabel.text = project.name
+            self.projectLabel.backgroundColor = Helper.getColorFromName(project.color)
         }
     }
     
@@ -193,12 +185,10 @@ class TimeEntryViewController: UIViewController, UIPickerViewDataSource, UIPicke
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initView()
-        // Do any additional setup after loading the view, typically from a nib.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
 

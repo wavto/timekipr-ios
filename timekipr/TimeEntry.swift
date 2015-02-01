@@ -11,7 +11,7 @@ import CoreData
 
 class TimeEntry: NSManagedObject {
 
-    @NSManaged var end: NSDate
+    @NSManaged var end: NSDate?
     @NSManaged var start: NSDate
     @NSManaged var timeEntryProject: Project
     
@@ -20,6 +20,16 @@ class TimeEntry: NSManagedObject {
         timeEntry.start = start
         timeEntry.timeEntryProject = project
         return timeEntry
+    }
+    
+    func getTotalTime(showTotalForCurrentTime showCurrent: Bool) -> Double {
+        var total: Double = 0
+        if self.end != nil {
+            total = -self.start.timeIntervalSinceDate(self.end!)
+        } else if showCurrent {
+            total = -self.start.timeIntervalSinceNow
+        }
+        return total
     }
 
 }

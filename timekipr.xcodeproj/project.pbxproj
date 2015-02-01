@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		553E61A61A7E3088007FF50B /* WorkSummarySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553E61A51A7E3088007FF50B /* WorkSummarySection.swift */; };
 		55470D511A618DA400646D00 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55470D501A618DA400646D00 /* Project.swift */; };
 		55470D531A618DA500646D00 /* TimeEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55470D521A618DA500646D00 /* TimeEntry.swift */; };
 		55470D551A62970900646D00 /* AddProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55470D541A62970900646D00 /* AddProjectViewController.swift */; };
@@ -33,6 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		553E61A51A7E3088007FF50B /* WorkSummarySection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkSummarySection.swift; sourceTree = "<group>"; };
 		55470D501A618DA400646D00 /* Project.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		55470D521A618DA500646D00 /* TimeEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeEntry.swift; sourceTree = "<group>"; };
 		55470D541A62970900646D00 /* AddProjectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddProjectViewController.swift; sourceTree = "<group>"; };
@@ -70,6 +72,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		553E61A31A7E3033007FF50B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				55559FCA1A2E59AA00B0452C /* TimeEntryViewController.swift */,
+				55559FE81A2E5C2200B0452C /* MainViewContoller.swift */,
+				55470D541A62970900646D00 /* AddProjectViewController.swift */,
+				55470D561A62979F00646D00 /* WorkSummaryViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		553E61A41A7E3052007FF50B /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				55470D581A62CACD00646D00 /* Helper.swift */,
+				553E61A51A7E3088007FF50B /* WorkSummarySection.swift */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
 		55470D4D1A61647800646D00 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
@@ -101,17 +123,14 @@
 			isa = PBXGroup;
 			children = (
 				55559FC51A2E59AA00B0452C /* AppDelegate.swift */,
-				55559FCA1A2E59AA00B0452C /* TimeEntryViewController.swift */,
-				55559FE81A2E5C2200B0452C /* MainViewContoller.swift */,
-				55470D541A62970900646D00 /* AddProjectViewController.swift */,
-				55470D561A62979F00646D00 /* WorkSummaryViewController.swift */,
 				55790B7F1A6BFFB300B02F47 /* Main.storyboard */,
 				55559FCF1A2E59AA00B0452C /* Images.xcassets */,
 				55559FD11A2E59AA00B0452C /* LaunchScreen.xib */,
 				55559FC71A2E59AA00B0452C /* timekipr.xcdatamodeld */,
-				55470D581A62CACD00646D00 /* Helper.swift */,
-				55559FC31A2E59AA00B0452C /* Supporting Files */,
+				553E61A31A7E3033007FF50B /* Controller */,
 				55470D4D1A61647800646D00 /* Entity */,
+				553E61A41A7E3052007FF50B /* Utils */,
+				55559FC31A2E59AA00B0452C /* Supporting Files */,
 			);
 			path = timekipr;
 			sourceTree = "<group>";
@@ -190,9 +209,11 @@
 				TargetAttributes = {
 					55559FBF1A2E59AA00B0452C = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = BUSQ43RX9C;
 					};
 					55559FD71A2E59AA00B0452C = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = BUSQ43RX9C;
 						TestTargetID = 55559FBF1A2E59AA00B0452C;
 					};
 				};
@@ -248,6 +269,7 @@
 				55559FC91A2E59AA00B0452C /* timekipr.xcdatamodeld in Sources */,
 				55470D591A62CACD00646D00 /* Helper.swift in Sources */,
 				55470D511A618DA400646D00 /* Project.swift in Sources */,
+				553E61A61A7E3088007FF50B /* WorkSummarySection.swift in Sources */,
 				55559FC61A2E59AA00B0452C /* AppDelegate.swift in Sources */,
 				55470D531A618DA500646D00 /* TimeEntry.swift in Sources */,
 			);
@@ -373,9 +395,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = timekipr/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -383,9 +407,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = timekipr/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -393,6 +419,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -404,6 +432,7 @@
 				INFOPLIST_FILE = timekiprTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/timekipr.app/timekipr";
 			};
 			name = Debug;
@@ -412,6 +441,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -419,6 +450,7 @@
 				INFOPLIST_FILE = timekiprTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/timekipr.app/timekipr";
 			};
 			name = Release;

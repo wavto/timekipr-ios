@@ -19,7 +19,6 @@ class MainViewController: UITableViewController, UITableViewDataSource {
     @IBAction func unwindToSegueFromAddProject(segue: UIStoryboardSegue) {
         var source: AddProjectViewController = segue.sourceViewController as AddProjectViewController
         if (source.projectName == nil || source.projectColorName == nil) {
-            //TODO handle error
             return
         }
         if let project = source.project {
@@ -33,16 +32,27 @@ class MainViewController: UITableViewController, UITableViewDataSource {
     }
     
     @IBAction func unwindToSegueWithoutAction(segue: UIStoryboardSegue) {
-        
+    }
+    
+    @IBAction func unwindToSegueDeleteTimeEntry(segue: UIStoryboardSegue) {
+        if var source = segue.sourceViewController as? TimeEntryViewController {
+            if (source.timeEntry != nil) {
+                self.managedObjectContext?.deleteObject(source.timeEntry!)
+            }
+        }
     }
     
     
     func initProjects() {
         let fetchRequest = NSFetchRequest(entityName: "Project")
-        let sortDescriptor = NSSortDescriptor(key: "Name", ascending: true)
-        fetchRequest.sortDescriptors?.append(sortDescriptor)
+        let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
         if let fetchResults = self.managedObjectContext?.executeFetchRequest(fetchRequest, error: nil) as? [Project] {
-            self.projects = fetchResults
+            for project in fetchResults {
+                if !project.removed {
+                    self.projects.append(project)
+                }
+            }
         }
     }
     
@@ -74,7 +84,7 @@ class MainViewController: UITableViewController, UITableViewDataSource {
         
         var deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "delete", handler: {(action, indexPath) -> Void in
             tableView.editing = false
-            self.managedObjectContext!.deleteObject(self.projects[indexPath.row])
+            self.projects[indexPath.row].removed = true
             self.projects.removeAtIndex(indexPath.row)
             self.tableView.reloadData()
         })
@@ -98,6 +108,9 @@ class MainViewController: UITableViewController, UITableViewDataSource {
             if let project = sender as? Project {
                 timeEntryViewController?.timeEntry = TimeEntry.create(NSDate(), timeEntryProject: project, insertIntoManagedObjectContext: self.managedObjectContext!)
             }
+            if let timeEntry = sender as? TimeEntry {
+                timeEntryViewController?.timeEntry = timeEntry
+            }
         }
     }
     
@@ -110,20 +123,32 @@ class MainViewController: UITableViewController, UITableViewDataSource {
         return nil
     }
     
+    private func redirectToCurrentTimeEntry() {
+        let fetchrequest = NSFetchRequest(entityName: "TimeEntry")
+        fetchrequest.predicate = NSPredicate(format: "end == nil")
+        fetchrequest.fetchLimit = 1
+        if let fetchResults = self.managedObjectContext?.executeFetchRequest(fetchrequest, error: nil) as? [TimeEntry] {
+            if fetchResults.count > 0 {
+                self.performSegueWithIdentifier("startTimer", sender: fetchResults[0])
+            }
+        }
+    }
+    
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        initProjects()
-        // Do any additional setup after loading the view, typically from a nib.
+        self.initProjects()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        self.redirectToCurrentTimeEntry()
+    }
     
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     
